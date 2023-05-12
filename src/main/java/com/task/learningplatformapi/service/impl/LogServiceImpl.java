@@ -34,6 +34,11 @@ public class LogServiceImpl implements LogService {
         return mapperUtil.map(updated, LogDTO.class);
     }
 
+    @Override
+    public void delete(Long id) {
+        repository.delete(new Log(id));
+    }
+
     private void validateCreateData(LogDTO dto) {
         // Validate the enrollment id exists
         if (dto.getEnrollment().getId() == null) {
@@ -46,5 +51,4 @@ public class LogServiceImpl implements LogService {
             throw new MissingIdToPersistEntityException("Missing id to update the log!");
         }
     }
-
 }

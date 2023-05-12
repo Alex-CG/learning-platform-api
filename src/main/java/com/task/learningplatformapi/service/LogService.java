@@ -7,4 +7,6 @@ public interface LogService {
     LogDTO create(LogDTO dto);
 
     LogDTO update(LogDTO log);
+
+    void delete(Long id);
 }

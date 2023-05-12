@@ -9,6 +9,10 @@ import java.time.LocalDate;
 @Table(name = "log")
 public class Log {
 
+    public Log(Long id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

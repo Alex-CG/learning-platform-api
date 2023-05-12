@@ -26,4 +26,10 @@ public class LogController {
     public ResponseEntity<LogDTO> update(@RequestBody LogDTO log) {
         return ResponseEntity.ok(service.update(log));
     }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<LogDTO> delete(@PathVariable("id") Long id) {
+        service.delete(id);
+        return ResponseEntity.ok().build();
+    }
 }
