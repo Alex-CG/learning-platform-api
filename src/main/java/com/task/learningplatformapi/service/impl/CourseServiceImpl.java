@@ -1,17 +1,12 @@
 package com.task.learningplatformapi.service.impl;
 
 import com.task.learningplatformapi.dto.CourseDTO;
-import com.task.learningplatformapi.dto.StudentDTO;
 import com.task.learningplatformapi.entity.Course;
-import com.task.learningplatformapi.exception.MissingIdToUpdateEntityException;
-import com.task.learningplatformapi.exception.StudentUnderAllowedAgeException;
+import com.task.learningplatformapi.exception.MissingIdToPersistEntityException;
 import com.task.learningplatformapi.repository.CourseRepository;
 import com.task.learningplatformapi.service.CourseService;
 import com.task.learningplatformapi.util.MapperUtil;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.time.Period;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -34,14 +29,14 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public CourseDTO update(CourseDTO dto) {
         validateUpdateData(dto);
-        Course saved = repository.save(mapperUtil.map(dto, Course.class));
-        return mapperUtil.map(saved, CourseDTO.class);
+        Course updated = repository.save(mapperUtil.map(dto, Course.class));
+        return mapperUtil.map(updated, CourseDTO.class);
     }
 
     private void validateUpdateData(CourseDTO dto) {
         // Validate the id exists
         if (dto.getId() == null) {
-            throw new MissingIdToUpdateEntityException("Missing course id to perform the update!");
+            throw new MissingIdToPersistEntityException("Missing course id to perform the update!");
         }
     }
 }

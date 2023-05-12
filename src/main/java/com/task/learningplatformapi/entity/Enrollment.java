@@ -8,6 +8,11 @@ import jakarta.persistence.*;
 @Table(name = "enrollment")
 public class Enrollment {
 
+    public Enrollment(Student student, Course course) {
+        this.student = student;
+        this.course = course;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
