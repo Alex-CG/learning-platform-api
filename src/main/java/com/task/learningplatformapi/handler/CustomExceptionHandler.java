@@ -1,6 +1,7 @@
 package com.task.learningplatformapi.handler;
 
 import com.task.learningplatformapi.exception.CustomException;
+import com.task.learningplatformapi.exception.MissingIdToUpdateEntityException;
 import com.task.learningplatformapi.exception.StudentUnderAllowedAgeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,15 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(StudentUnderAllowedAgeException.class)
     public ResponseEntity<ErrorResponse> handleStudentUnderAllowedAgeException(StudentUnderAllowedAgeException ex) {
+        return buildErrorResponse(ex);
+    }
+
+    @ExceptionHandler(MissingIdToUpdateEntityException.class)
+    public ResponseEntity<ErrorResponse> handleMissingIdToUpdateEntityException(MissingIdToUpdateEntityException ex) {
+        return buildErrorResponse(ex);
+    }
+
+    private ResponseEntity<ErrorResponse> buildErrorResponse(CustomException ex) {
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
         HttpStatus httpStatus = resolveHttpStatus(ex);
         return new ResponseEntity<>(errorResponse, httpStatus);

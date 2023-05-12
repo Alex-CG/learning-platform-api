@@ -14,24 +14,25 @@ import java.time.Period;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    private StudentRepository repository;
+    private final StudentRepository repository;
     private final MapperUtil mapperUtil;
 
     private static final Integer MIN_STUDENT_AGE = 16;
 
-    public StudentServiceImpl(MapperUtil mapperUtil) {
+    public StudentServiceImpl(StudentRepository repository, MapperUtil mapperUtil) {
+        this.repository = repository;
         this.mapperUtil = mapperUtil;
     }
 
     @Override
     public StudentDTO create(StudentDTO dto) {
         dto.setId(null);
-        validateStudentData(dto);
+        validateCreateData(dto);
         Student saved = repository.save(mapperUtil.map(dto, Student.class));
         return mapperUtil.map(saved, StudentDTO.class);
     }
 
-    private void validateStudentData(StudentDTO dto) {
+    private void validateCreateData(StudentDTO dto) {
         // Validate a student is not under allowed age
         LocalDate today = LocalDate.now();
         Period age = Period.between(dto.getDob(), today);
