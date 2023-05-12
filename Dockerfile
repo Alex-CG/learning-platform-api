@@ -29,4 +29,4 @@ WORKDIR /app
 
 COPY --from=build /app/target/learning-platform-api-0.0.1-SNAPSHOT.jar .
 
-CMD ["java", "-jar", "learning-platform-api.jar"]
+CMD ["java", "-jar", "learning-platform-api-0.0.1-SNAPSHOT.jar"]

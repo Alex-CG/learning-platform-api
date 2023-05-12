@@ -1,6 +1,6 @@
 package com.task.learningplatformapi.repository;
 
-import com.task.learningplatformapi.model.Enrollment;
+import com.task.learningplatformapi.entity.Enrollment;
 import org.springframework.stereotype.Repository;
 
 @Repository

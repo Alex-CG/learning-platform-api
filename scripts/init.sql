@@ -1,4 +1,5 @@
-CREATE DATABASE IF NOT EXISTS learningdb;
+--DROP DATABASE IF EXISTS learningdb;
+--CREATE DATABASE learningdb;
 
 \c learningdb;
 
@@ -24,6 +25,14 @@ CREATE TABLE IF NOT EXISTS course (
     description TEXT
 );
 
+CREATE TABLE IF NOT EXISTS enrollment (
+    id SERIAL PRIMARY KEY,
+    student_id INT,
+    course_id INT,
+    FOREIGN KEY (student_id) REFERENCES student(id),
+    FOREIGN KEY (course_id) REFERENCES course(id)
+);
+
 CREATE TABLE IF NOT EXISTS log (
     id SERIAL PRIMARY KEY,
     enrollment_id INT,
@@ -32,12 +41,4 @@ CREATE TABLE IF NOT EXISTS log (
     task_description TEXT,
     time_spent INTERVAL,
     FOREIGN KEY (enrollment_id) REFERENCES enrollment(id)
-);
-
-CREATE TABLE IF NOT EXISTS enrollment (
-    id SERIAL PRIMARY KEY,
-    student_id INT,
-    course_id INT,
-    FOREIGN KEY (student_id) REFERENCES student(id),
-    FOREIGN KEY (course_id) REFERENCES course(id)
 );

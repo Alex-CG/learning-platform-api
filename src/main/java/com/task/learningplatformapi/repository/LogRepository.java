@@ -1,6 +1,6 @@
 package com.task.learningplatformapi.repository;
 
-import com.task.learningplatformapi.model.Log;
+import com.task.learningplatformapi.entity.Log;
 import org.springframework.stereotype.Repository;
 
 @Repository

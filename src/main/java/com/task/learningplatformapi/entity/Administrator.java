@@ -1,4 +1,4 @@
-package com.task.learningplatformapi.model;
+package com.task.learningplatformapi.entity;
 
 import lombok.Data;
 import jakarta.persistence.*;

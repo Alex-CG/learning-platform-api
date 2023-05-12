@@ -1,6 +1,6 @@
 package com.task.learningplatformapi.repository;
 
-import com.task.learningplatformapi.model.Administrator;
+import com.task.learningplatformapi.entity.Administrator;
 import org.springframework.stereotype.Repository;
 
 @Repository
