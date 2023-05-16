@@ -12,4 +12,9 @@ public class HelloWordController {
     public String sayHello() {
         return "hey, what's up!";
     }
+
+    @GetMapping(path = "/askMyName")
+    public String askMyName() {
+        return "hey, what's your name?";
+    }
 }

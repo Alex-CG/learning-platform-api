@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Validated
 @RestController
-@RequestMapping(path = "/enrollment")
+@RequestMapping(path = "/enrollments")
 public class EnrollmentController {
 
     private EnrollmentService service;

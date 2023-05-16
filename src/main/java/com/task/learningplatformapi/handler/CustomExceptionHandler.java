@@ -1,8 +1,7 @@
 package com.task.learningplatformapi.handler;
 
-import com.task.learningplatformapi.exception.CustomException;
-import com.task.learningplatformapi.exception.MissingIdToPersistEntityException;
-import com.task.learningplatformapi.exception.StudentUnderAllowedAgeException;
+import com.task.learningplatformapi.exception.*;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,8 +21,19 @@ public class CustomExceptionHandler {
         return buildErrorResponse(ex);
     }
 
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+        CustomException customEx = null;
+        if (ex.getMessage().contains("student_email_key")) {
+            customEx = new EmailAlreadyInUseException();
+        }
+        return buildErrorResponse(customEx);
+    }
+
     private ResponseEntity<ErrorResponse> buildErrorResponse(CustomException ex) {
-        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(
+                ex.getErrorCode().getCode(), ex.getErrorCode().getMessage(),
+                ex.getEntity(), ex.getField());
         HttpStatus httpStatus = resolveHttpStatus(ex);
         return new ResponseEntity<>(errorResponse, httpStatus);
     }
@@ -36,6 +46,6 @@ public class CustomExceptionHandler {
         return HttpStatus.INTERNAL_SERVER_ERROR;
     }
 
-    private record ErrorResponse(String message) {
+    private record ErrorResponse(String code, String message, String entity, String field) {
     }
 }

@@ -37,8 +37,7 @@ public class StudentServiceImpl implements StudentService {
         LocalDate today = LocalDate.now();
         Period age = Period.between(dto.getDob(), today);
         if (age.getYears() < MIN_STUDENT_AGE) {
-            throw new StudentUnderAllowedAgeException(
-                    String.format("Student should be at least %s years old!", MIN_STUDENT_AGE));
+            throw new StudentUnderAllowedAgeException();
         }
     }
 

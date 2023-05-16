@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class MaxCoursesPerEnrollmentExceededException extends CustomException {
 
     public MaxCoursesPerEnrollmentExceededException(String message) {
-        super(message);
+        super(null);
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Validated
 @RestController
-@RequestMapping(path = "/student")
+@RequestMapping(path = "/students")
 public class StudentController {
 
     private final StudentService service;

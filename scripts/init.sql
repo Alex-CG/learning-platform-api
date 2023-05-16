@@ -1,8 +1,3 @@
---DROP DATABASE IF EXISTS learningdb;
---CREATE DATABASE learningdb;
-
-\c learningdb;
-
 CREATE TABLE IF NOT EXISTS student (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,

@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class MissingIdToPersistEntityException extends CustomException {
 
     public MissingIdToPersistEntityException(String message) {
-        super(message);
+        super(null);
     }
 }

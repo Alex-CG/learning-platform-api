@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Validated
 @RestController
-@RequestMapping(path = "/course")
+@RequestMapping(path = "/courses")
 public class CourseController {
 
     private final CourseService service;

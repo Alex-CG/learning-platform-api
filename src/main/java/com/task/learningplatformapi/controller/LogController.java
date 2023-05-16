@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Validated
 @RestController
-@RequestMapping(path = "/log")
+@RequestMapping(path = "/logs")
 public class LogController {
 
     private final LogService service;
